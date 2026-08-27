@@ -456,115 +456,195 @@ AOS.init({
         IMAGE ARRAY
 =========================================*/
 
-let currentIndex = 0;
+// let currentIndex = 0;
 
-const images = [...galleryItems].map(item => {
+// const images = [...galleryItems].map(item => {
 
-    return item.querySelector("img").src;
+//     return item.querySelector("img").src;
 
-});
+// });
 
-/*=========================================
-        OPEN
-=========================================*/
 
-galleryItems.forEach((item,index)=>{
 
-    item.addEventListener("click",()=>{
+// galleryItems.forEach((item,index)=>{
 
-        currentIndex = index;
+//     item.addEventListener("click",()=>{
 
-        lightboxImage.src = images[currentIndex];
+//         currentIndex = index;
 
-        lightbox.classList.add("show");
+//         lightboxImage.src = images[currentIndex];
 
-        document.body.style.overflow = "hidden";
+//         lightbox.classList.add("show");
+
+//         document.body.style.overflow = "hidden";
+
+//     });
+
+// });
+
+
+
+// closeBtn.addEventListener("click",()=>{
+
+//     lightbox.classList.remove("show");
+
+//     document.body.style.overflow="auto";
+
+// });
+
+
+// nextBtn.addEventListener("click",()=>{
+
+//     currentIndex++;
+
+//     if(currentIndex >= images.length){
+
+//         currentIndex = 0;
+
+//     }
+
+//     lightboxImage.src = images[currentIndex];
+
+// });
+
+
+
+// prevBtn.addEventListener("click",()=>{
+
+//     currentIndex--;
+
+//     if(currentIndex < 0){
+
+//         currentIndex = images.length - 1;
+
+//     }
+
+//     lightboxImage.src = images[currentIndex];
+
+// });
+
+
+
+// document.addEventListener("keydown",(e)=>{
+
+//     if(e.key==="Escape"){
+
+//         lightbox.classList.remove("show");
+
+//         document.body.style.overflow="auto";
+
+//     }
+
+// });
+
+
+
+// lightbox.addEventListener("click",(e)=>{
+
+//     if(e.target===lightbox){
+
+//         lightbox.classList.remove("show");
+
+//         document.body.style.overflow="auto";
+
+//     }
+
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("psnWhatsappForm");
+
+    if (!form) {
+        console.error("WhatsApp form not found!");
+        return;
+    }
+
+    form.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const name =
+            document.getElementById("psnName").value.trim();
+
+        const mobile =
+            document.getElementById("psnMobile").value.trim();
+
+        const service =
+            document.getElementById("psnService").value;
+
+        const location =
+            document.getElementById("psnLocation").value.trim();
+
+        const requirement =
+            document.getElementById("psnRequirement").value.trim();
+
+        if (name === "") {
+            alert("Please enter your name.");
+            return;
+        }
+
+        if (mobile === "") {
+            alert("Please enter your mobile number.");
+            return;
+        }
+
+        if (service === "") {
+            alert("Please choose a service.");
+            return;
+        }
+
+        if (location === "") {
+            alert("Please enter your location.");
+            return;
+        }
+
+        if (requirement === "") {
+            alert("Please enter your requirement.");
+            return;
+        }
+
+        const cleanMobile = mobile.replace(/\D/g, "");
+
+        if (!/^[6-9][0-9]{9}$/.test(cleanMobile)) {
+            alert("Please enter a valid 10-digit Indian mobile number.");
+            return;
+        }
+
+        const whatsappNumber = "919900006948";
+
+        const message =
+`Hello Omega Safety Nets,
+
+*New Website Enquiry*
+
+*Name:* ${name}
+
+*Mobile:* ${cleanMobile}
+
+*Service:* ${service}
+
+*Location:* ${location}
+
+*Requirement:*
+${requirement}
+
+Thank you.`;
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+        console.log("WhatsApp URL:", whatsappURL);
+
+        window.location.href = whatsappURL;
 
     });
 
 });
-
-/*=========================================
-        CLOSE
-=========================================*/
-
-closeBtn.addEventListener("click",()=>{
-
-    lightbox.classList.remove("show");
-
-    document.body.style.overflow="auto";
-
-});
-
-/*=========================================
-        NEXT
-=========================================*/
-
-nextBtn.addEventListener("click",()=>{
-
-    currentIndex++;
-
-    if(currentIndex >= images.length){
-
-        currentIndex = 0;
-
-    }
-
-    lightboxImage.src = images[currentIndex];
-
-});
-
-/*=========================================
-        PREVIOUS
-=========================================*/
-
-prevBtn.addEventListener("click",()=>{
-
-    currentIndex--;
-
-    if(currentIndex < 0){
-
-        currentIndex = images.length - 1;
-
-    }
-
-    lightboxImage.src = images[currentIndex];
-
-});
-
-/*=========================================
-        ESC KEY
-=========================================*/
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Escape"){
-
-        lightbox.classList.remove("show");
-
-        document.body.style.overflow="auto";
-
-    }
-
-});
-
-/*=========================================
-        CLICK OUTSIDE
-=========================================*/
-
-lightbox.addEventListener("click",(e)=>{
-
-    if(e.target===lightbox){
-
-        lightbox.classList.remove("show");
-
-        document.body.style.overflow="auto";
-
-    }
-
-});
-
-
 
 /*=========================================
             FAQ ACCORDION
@@ -750,62 +830,6 @@ item.addEventListener("mouseleave",()=>{
 
 
 
-const form = document.getElementById("psnWhatsappForm");
-
-form.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    const fullName = form.querySelector('input[type="text"]').value.trim();
-    const mobile = form.querySelector('input[type="tel"]').value.trim();
-    const service = form.querySelector("select").value;
-    const location = form.querySelectorAll('input[type="text"]')[1].value.trim();
-    const requirement = form.querySelector("textarea").value.trim();
-
-    // Validation
-
-    if (
-        fullName === "" ||
-        mobile === "" ||
-        service === "Choose Service" ||
-        location === "" ||
-        requirement === ""
-    ) {
-        alert("Please fill all the fields.");
-        return;
-    }
-
-    if (!/^[6-9]\d{9}$/.test(mobile)) {
-        alert("Please enter a valid 10-digit mobile number.");
-        return;
-    }
-
-    // Your WhatsApp Number
-    const whatsappNumber = "919876543210"; // Change this
-
-    const message =
-`*🛡️ New Website Enquiry*
-
-👤 *Name:* ${fullName}
-
-📱 *Mobile:* ${mobile}
-
-🛠️ *Service:* ${service}
-
-📍 *Location:* ${location}
-
-📝 *Requirement:*
-${requirement}
-
--------------------------
-Prasad Safety Nets Website`;
-
-    const url =
-`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
-
-});
 
 
 
@@ -845,3 +869,158 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+/*=========================================
+        WHATSAPP ENQUIRY FORM
+=========================================*/
+
+/* =========================================
+   WHATSAPP ENQUIRY FORM
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("psnWhatsappForm");
+
+    if (!form) {
+        console.error("WhatsApp form not found!");
+        return;
+    }
+
+    form.addEventListener("submit", function (e) {
+
+        /* STOP NORMAL FORM SUBMISSION */
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log("WhatsApp form submitted");
+
+
+        /* =========================================
+           GET FORM VALUES
+        ========================================= */
+
+        const name =
+            document.getElementById("psnName").value.trim();
+
+        const mobile =
+            document.getElementById("psnMobile").value.trim();
+
+        const service =
+            document.getElementById("psnService").value;
+
+        const location =
+            document.getElementById("psnLocation").value.trim();
+
+        const requirement =
+            document.getElementById("psnRequirement").value.trim();
+
+
+        /* =========================================
+           VALIDATION
+        ========================================= */
+
+        if (name === "") {
+            alert("Please enter your name.");
+            document.getElementById("psnName").focus();
+            return;
+        }
+
+        if (mobile === "") {
+            alert("Please enter your mobile number.");
+            document.getElementById("psnMobile").focus();
+            return;
+        }
+
+        if (service === "") {
+            alert("Please choose a service.");
+            document.getElementById("psnService").focus();
+            return;
+        }
+
+        if (location === "") {
+            alert("Please enter your location.");
+            document.getElementById("psnLocation").focus();
+            return;
+        }
+
+        if (requirement === "") {
+            alert("Please enter your requirement.");
+            document.getElementById("psnRequirement").focus();
+            return;
+        }
+
+
+        /* =========================================
+           MOBILE VALIDATION
+        ========================================= */
+
+        const cleanMobile = mobile.replace(/\D/g, "");
+
+        if (!/^[6-9][0-9]{9}$/.test(cleanMobile)) {
+
+            alert(
+                "Please enter a valid 10-digit Indian mobile number."
+            );
+
+            document.getElementById("psnMobile").focus();
+
+            return;
+        }
+
+
+        /* =========================================
+           YOUR WHATSAPP NUMBER
+        ========================================= */
+
+        const whatsappNumber = "919900006948";
+
+
+        /* =========================================
+           CREATE WHATSAPP MESSAGE
+        ========================================= */
+
+        const message =
+`Hello Omega Safety Nets,
+
+*New Website Enquiry*
+
+*Name:* ${name}
+
+*Mobile:* ${cleanMobile}
+
+*Service:* ${service}
+
+*Location:* ${location}
+
+*Requirement:*
+${requirement}
+
+Thank you.`;
+
+
+        /* =========================================
+           CREATE WHATSAPP URL
+        ========================================= */
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+
+        console.log("WhatsApp URL:");
+        console.log(whatsappURL);
+
+
+        /* =========================================
+           REDIRECT TO WHATSAPP
+        ========================================= */
+
+        window.location.href = whatsappURL;
+
+    });
+
+});
