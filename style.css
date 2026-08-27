@@ -8632,3 +8632,119 @@ WHY CHOOSE US - SMALL MOBILE
 }
 
 
+
+
+/* =========================================================
+   MOBILE SERVICES DROPDOWN FIX
+   Paste this at the VERY END of your CSS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Disable desktop hover behavior on mobile */
+    .nav-item:hover > .dropdown,
+    .nav-item:hover > .dropdown-menu,
+    .dropdown:hover > .dropdown-menu,
+    .services:hover .dropdown-menu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Services dropdown - closed by default */
+    .nav-item .dropdown,
+    .nav-item .dropdown-menu,
+    .services .dropdown-menu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(-8px);
+        transition: opacity 0.25s ease,
+                    transform 0.25s ease,
+                    visibility 0.25s ease;
+    }
+
+    /* Only show when your JS adds an active/open class */
+    .nav-item.active > .dropdown,
+    .nav-item.active > .dropdown-menu,
+    .services.active .dropdown-menu,
+    .services.open .dropdown-menu,
+    .dropdown.active .dropdown-menu,
+    .dropdown.open .dropdown-menu {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0);
+    }
+
+    /* Dropdown links */
+    .dropdown a,
+    .dropdown-menu a {
+        display: block;
+        width: 100%;
+    }
+
+    /* Prevent the dropdown from forcing the whole page sideways */
+    .dropdown,
+    .dropdown-menu {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Mobile dropdown scrolling */
+    .dropdown-menu {
+        max-height: 55vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Remove sticky hover effects from dropdown links */
+    .dropdown a:hover,
+    .dropdown-menu a:hover {
+        transform: none !important;
+    }
+
+    /* Better touch behavior */
+    .dropdown a,
+    .dropdown-menu a,
+    .services > a,
+    .services > button {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+}
+
+
+/* =========================================================
+   IMPORTANT: PREVENT HOVER DROPDOWN ON TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .nav-item:hover .dropdown,
+    .nav-item:hover .dropdown-menu,
+    .services:hover .dropdown-menu,
+    .dropdown:hover .dropdown-menu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Open only through active/open class */
+    .nav-item.active .dropdown,
+    .nav-item.active .dropdown-menu,
+    .services.active .dropdown-menu,
+    .services.open .dropdown-menu,
+    .dropdown.active .dropdown-menu,
+    .dropdown.open .dropdown-menu {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+}
