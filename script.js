@@ -612,7 +612,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const whatsappNumber = "919900006948";
+        const whatsappNumber = "919900006958";
 
         const message =
 `Hello Omega Safety Nets,
@@ -974,7 +974,7 @@ document.addEventListener("DOMContentLoaded", function () {
            YOUR WHATSAPP NUMBER
         ========================================= */
 
-        const whatsappNumber = "919900006948";
+        const whatsappNumber = "919900006958";
 
 
         /* =========================================
