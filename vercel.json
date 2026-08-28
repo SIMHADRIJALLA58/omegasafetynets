@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "omegasafetynets.vercel.app"
+        }
+      ],
+      "destination": "https://omegabalconynets.in/$1",
+      "permanent": true
+    }
+  ]
+}
